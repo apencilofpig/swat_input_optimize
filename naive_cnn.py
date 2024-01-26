@@ -5,7 +5,7 @@ from torch import nn
 class Naive_CNN(nn.Module):
     def __init__(self):
         super(Naive_CNN, self).__init__()
-        self.embedding = nn.Embedding(51, 32)
+        self.embedding = nn.Embedding(256, 32)
         self.conv = nn.Sequential(
             nn.Conv2d(4, 32, (5, 1), padding=(1,0)),
             nn.ReLU(),
@@ -21,7 +21,7 @@ class Naive_CNN(nn.Module):
             nn.Dropout(0.3)
         )
         self.fc = nn.Sequential(
-            nn.Linear(64*4*4, 512),
+            nn.Linear(32*4*4, 512),
             nn.ReLU(),
             nn.Linear(512, 36)
         )
@@ -29,5 +29,6 @@ class Naive_CNN(nn.Module):
     def forward(self, x):
         x = self.embedding(x)
         x = self.conv(x)
+        x = x.view(-1, 32*4*4)
         x = self.fc(x)
         return x

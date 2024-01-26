@@ -13,8 +13,8 @@ from naive_cnn import Naive_CNN
 # print(df.shape)
 # df.head()
 
-np_inputs = np.load('/opt/project/ieee754_inputs.npy')
-np_labels = np.load('/opt/project/labels.npy')
+np_inputs = np.load('ieee754_inputs.npy')
+np_labels = np.load('labels.npy')
 np_inputs = np.transpose(np_inputs, (0, 2, 1))
 
 # 划分训练集和剩余部分
